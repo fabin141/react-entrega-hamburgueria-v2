@@ -1,17 +1,28 @@
-import React from "react";
-import { RoutesMain } from "./routes";
-import { Providers } from "./contexts/Providers";
-import { GlobalStyle } from "./styles/global";
+import { ThemeProvider } from "styled-components";
+import { ToastContainer } from "react-toastify";
+import { RoutesMain as Routes } from "./routes";
+import { Global } from "./styles/Global";
+import { theme } from "./styles/themes";
 
-function App() {
+export const App = () => {
   return (
-    <div className="App">
-      <GlobalStyle />
-      <Providers>
-        <RoutesMain />
-      </Providers>
-    </div>
+    <>
+      <Global />
+      <ToastContainer
+        position="top-left"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      <ThemeProvider theme={theme}>
+        <Routes />
+      </ThemeProvider>
+    </>
   );
-}
-
-export default App;
+};
